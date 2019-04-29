@@ -12,6 +12,7 @@ namespace GraphQlLearning.GraphQL
         public ApplicationSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<ApplicationQuery>();
+            Mutation = resolver.Resolve<ApplicationMutation>();
         }
     }
 }

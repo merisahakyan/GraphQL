@@ -19,5 +19,12 @@ namespace GraphQlLearning.Repositories
         {
             return _context.ProductReviews.Where(p => p.ProductId == prodId);
         }
+
+        public async Task<ProductReview> AddReview(ProductReview review)
+        {
+            _context.ProductReviews.Add(review);
+            await _context.SaveChangesAsync();
+            return review;
+        }
     }
 }
