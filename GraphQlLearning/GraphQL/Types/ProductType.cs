@@ -1,5 +1,6 @@
 ﻿using GraphQL.Types;
 using GraphQlLearning.Data.Entities;
+using GraphQlLearning.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace GraphQlLearning.GraphQL.Types
 {
     public class ProductType : ObjectGraphType<Product>
     {
-        public ProductType()
+        public ProductType(ProductReviewRepository repo)
         {
             Field(t => t.Id);
             Field(t => t.Name);
@@ -17,7 +18,11 @@ namespace GraphQlLearning.GraphQL.Types
             Field(t => t.Price);
             Field(t => t.Rating);
             Field(t => t.Stock);
-            Field(t => t.Type);
+            Field<ProductTypeEnumType>("Type");
+            Field<ListGraphType<ProductReviewType>>(
+                "reviews",
+                resolve: context => repo.GetForProduct(context.Source.Id)
+                );
         }
     }
 }

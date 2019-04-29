@@ -16,6 +16,7 @@ namespace GraphQlLearning.Data
         }
 
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
     }
 
     public class BloggingContextFactory : IDesignTimeDbContextFactory<ApplicationDbContext>

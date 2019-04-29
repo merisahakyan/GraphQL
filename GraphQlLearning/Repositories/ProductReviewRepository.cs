@@ -7,22 +7,17 @@ using System.Threading.Tasks;
 
 namespace GraphQlLearning.Repositories
 {
-    public class ProductRepository
+    public class ProductReviewRepository
     {
         private readonly ApplicationDbContext _context;
-        public ProductRepository(ApplicationDbContext context)
+        public ProductReviewRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IEnumerable<Product> GetAll()
+        public IEnumerable<ProductReview> GetForProduct(int prodId)
         {
-            return _context.Products;
-        }
-
-        public Product GetSingle(int id)
-        {
-            return _context.Products.FirstOrDefault(p => p.Id == id);
+            return _context.ProductReviews.Where(p => p.ProductId == prodId);
         }
     }
 }

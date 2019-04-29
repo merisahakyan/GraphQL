@@ -16,6 +16,19 @@ namespace GraphQlLearning.GraphQL
                 "products",
                 resolve: context => repo.GetAll()
                 );
+
+            Field<ProductType>(
+                "product",
+                arguments: new QueryArguments(
+                    new QueryArgument<NonNullGraphType<IntGraphType>> //or IdGraphType
+                    {
+                        Name = "id",
+                    }),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<int>("id");
+                    return repo.GetSingle(id);
+                });
         }
     }
 }

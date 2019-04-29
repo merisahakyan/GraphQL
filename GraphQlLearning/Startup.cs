@@ -37,6 +37,7 @@ namespace GraphQlLearning
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(_config["ConnectionStrings:DefaultConnection"]));
             services.AddScoped<ProductRepository>();
+            services.AddScoped<ProductReviewRepository>();
 
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<ApplicationSchema>();

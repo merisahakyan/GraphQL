@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GraphQlLearning.Data
 {
-    public enum ProductType
+    public enum ProductTypes
     {
         Boots
     }

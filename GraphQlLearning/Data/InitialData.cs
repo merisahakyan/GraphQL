@@ -11,15 +11,25 @@ namespace GraphQlLearning.Data
         {
             if (!context.Products.Any())
             {
-                context.Products.Add(new Entities.Product
+                var product = new Entities.Product
                 {
                     Name = "test1",
                     Stock = 5,
                     Price = 100,
                     Rating = 4,
-                    Type = ProductType.Boots,
+                    Type = ProductTypes.Boots,
                     Description = "About boots"
+                };
+                context.Products.Add(product);
+                context.SaveChanges();
+
+                context.ProductReviews.Add(new Entities.ProductReview
+                {
+                    ProductId = product.Id,
+                    Review = "good",
+                    Title = "fine"
                 });
+
                 context.SaveChanges();
             }
         }
